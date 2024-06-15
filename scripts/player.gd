@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 const SPEED = 100
 const BOOSTED_SPEED = SPEED + 100
+
 @export var speed = SPEED
 @export var tools = TOOLS
 
 var using_tool = false
 var current_tool = "hoe"
+
 var is_moving = false
 var current_direction = "down"
 
@@ -25,7 +27,6 @@ const DIRECTIONS = {
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
-	$AnimatedSprite2D.connect("animation_finished", _on_AnimatedSprite2D_animation_finished)
 
 func _physics_process(delta):
 	handle_speed_input()
@@ -72,7 +73,7 @@ func stop_moving():
 		velocity = Vector2.ZERO
 		$AnimatedSprite2D.play(get_animation(current_direction) + "_idle")
 
-func _on_AnimatedSprite2D_animation_finished():
+func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == get_animation(current_direction) + "_" + current_tool:
 		using_tool = false
 	else:
