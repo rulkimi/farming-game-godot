@@ -3,17 +3,17 @@ extends CharacterBody2D
 var speed = 100
 
 var using_tool = false
-var current_tool = "shovel"
+var current_tool = "hoe"
 
 var is_moving = false
 var current_direction = "none"
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
+	$AnimatedSprite2D.connect("animation_finished", _on_AnimatedSprite2D_animation_finished)
 
 func _physics_process(delta):
 	player_movement(delta)
-	$AnimatedSprite2D.connect("animation_finished", _on_AnimatedSprite2D_animation_finished)
 	
 func player_movement(delta):
 	if Input.is_action_pressed("ui_right") and !using_tool:
