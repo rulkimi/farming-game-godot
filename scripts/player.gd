@@ -10,8 +10,18 @@ var current_tool = "hoe"
 var is_moving = false
 var current_direction = "down"
 
-const TOOLS = {"tool_1": "axe", "tool_2": "hoe", "tool_3": "watering-pot"}
-const DIRECTIONS = {"ui_right": Vector2(1, 0), "ui_left": Vector2(-1, 0), "ui_down": Vector2(0, 1), "ui_up": Vector2(0, -1)}
+const TOOLS = {
+	"tool_1": "axe",
+	"tool_2": "hoe",
+	"tool_3": "watering-pot"
+}
+
+const DIRECTIONS = {
+	"ui_right": Vector2(1, 0),
+	"ui_left": Vector2(-1, 0),
+	"ui_down": Vector2(0, 1), 
+	"ui_up": Vector2(0, -1)
+}
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
