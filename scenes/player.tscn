@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cr3ydsuxgrxv0" path="res://assets/Characters/Basic Charakter Spritesheet.png" id="1_v8rug"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dbagk"]
-radius = 5.0
+radius = 4.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4j37"]
 atlas = ExtResource("1_v8rug")
@@ -76,7 +76,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"back_walk",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -98,7 +98,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"front_walk",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -120,7 +120,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"side_walk",
-"speed": 2.0
+"speed": 5.0
 }]
 
 [node name="player" type="CharacterBody2D"]
@@ -131,11 +131,14 @@ shape = SubResource("CircleShape2D_dbagk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6gvw4")
-animation = &"side_walk"
-frame_progress = 0.153449
+animation = &"back_walk"
+frame_progress = 0.6393
+offset = Vector2(0, -5)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
-limit_right = 221
-limit_bottom = 191
+limit_right = 688
+limit_bottom = 368
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
