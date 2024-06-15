@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dsgbf3sttoqkn" path="res://assets/Tilesets/Tilled_Dirt.png" id="3_ihab0"]
 [ext_resource type="Texture2D" uid="uid://d0et7ugh1h5k5" path="res://assets/Tilesets/Water.png" id="4_r2nxj"]
 [ext_resource type="Texture2D" uid="uid://cyg263ocein50" path="res://assets/Objects/Basic_Grass_Biom_things.png" id="5_cdhcq"]
-[ext_resource type="PackedScene" uid="uid://v0njfvkilfdd" path="res://scenes/player.tscn" id="5_eqwfj"]
+[ext_resource type="PackedScene" uid="uid://ennt2yytqbwy" path="res://scenes/player.tscn" id="5_eqwfj"]
 [ext_resource type="Texture2D" uid="uid://dy1gj313lr25n" path="res://assets/Objects/Basic_Plants.png" id="6_hkmij"]
 [ext_resource type="Texture2D" uid="uid://cw0u61qkbl8q4" path="res://assets/Objects/Paths.png" id="7_s26cr"]
 
@@ -914,6 +914,3 @@ polygon = PackedVector2Array(321, 0, 321, 42, 326, 48, 369, 47, 369, 58, 373, 63
 
 [node name="hill_3" type="CollisionPolygon2D" parent="collisions"]
 polygon = PackedVector2Array(593, 0, 593, 59, 596, 63, 667, 64, 671, 59, 671, -1)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(154, 369)
