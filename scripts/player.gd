@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
-@export var speed = 100
+const SPEED = 100
+const BOOSTED_SPEED = SPEED + 100
+@export var speed = SPEED
+@export var tools = TOOLS
 
 var using_tool = false
 var current_tool = "hoe"
@@ -15,11 +18,18 @@ func _ready():
 	$AnimatedSprite2D.connect("animation_finished", _on_AnimatedSprite2D_animation_finished)
 
 func _physics_process(delta):
+	handle_speed_input()
 	handle_movement_input()
 	handle_tool_input()
 	handle_tool_usage()
 	move_and_slide()
-
+	
+func handle_speed_input():
+	if Input.is_action_just_pressed("ui_shift"):
+		speed = BOOSTED_SPEED
+	elif Input.is_action_just_released("ui_shift"):
+		speed = SPEED
+		
 func handle_movement_input():
 	if !using_tool:
 		for action in DIRECTIONS.keys():
