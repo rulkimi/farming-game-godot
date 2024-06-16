@@ -33,7 +33,7 @@ const DIRECTIONS = {
 
 const TOOL_OFFSETS = {
 	"down": Vector2(0, 14),
-	"up": Vector2(0, -14),
+	"up": Vector2(0, -16),
 	"left": Vector2(-14, 0),
 	"right": Vector2(14, 0)
 }
