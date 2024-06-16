@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d37xlch05c6el"]
+[gd_scene load_steps=29 format=3 uid="uid://d37xlch05c6el"]
 
 [ext_resource type="Texture2D" uid="uid://phg70356lv3" path="res://assets/Tilesets/Grass.png" id="1_5gv68"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_odlss"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dy1gj313lr25n" path="res://assets/Objects/Basic_Plants.png" id="6_hkmij"]
 [ext_resource type="Texture2D" uid="uid://cw0u61qkbl8q4" path="res://assets/Objects/Paths.png" id="7_s26cr"]
 [ext_resource type="Texture2D" uid="uid://btn6jnx6pvho7" path="res://crop_land.png" id="9_g28ww"]
+[ext_resource type="Script" path="res://scripts/ToolCollision.gd" id="14_tcsd3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4h6ov"]
 texture = ExtResource("1_5gv68")
@@ -930,6 +931,12 @@ sources/10 = SubResource("TileSetAtlasSource_g8hbk")
 sources/11 = SubResource("TileSetAtlasSource_5arsu")
 sources/12 = SubResource("TileSetAtlasSource_e4x4y")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8w1k8"]
+radius = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bnor"]
+size = Vector2(77, 46)
+
 [node name="world" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_odlss")
@@ -955,7 +962,15 @@ layer_5/tile_data = PackedInt32Array(1245198, 65546, 1, 1245199, 65546, 1, 12452
 
 [node name="player" parent="." instance=ExtResource("5_eqwfj")]
 z_index = 1
-position = Vector2(170, 121)
+position = Vector2(194, 328)
+
+[node name="ToolCollision" type="Area2D" parent="player"]
+position = Vector2(14, 0)
+script = ExtResource("14_tcsd3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/ToolCollision"]
+position = Vector2(2, 0)
+shape = SubResource("CircleShape2D_8w1k8")
 
 [node name="collisions" type="StaticBody2D" parent="."]
 visible = false
@@ -978,4 +993,13 @@ polygon = PackedVector2Array(593, 0, 593, 59, 596, 63, 667, 64, 671, 59, 671, -1
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(688, 219)
 
+[node name="ToolArea" type="Area2D" parent="."]
+position = Vector2(216, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToolArea"]
+position = Vector2(48.5, 28)
+shape = SubResource("RectangleShape2D_2bnor")
+
 [connection signal="tool_used" from="player" to="." method="_on_player_tool_used"]
+[connection signal="area_shape_entered" from="ToolArea" to="player/ToolCollision" method="_on_tool_area_area_shape_entered"]
+[connection signal="area_shape_exited" from="ToolArea" to="player/ToolCollision" method="_on_tool_area_area_shape_exited"]
