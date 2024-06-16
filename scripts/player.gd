@@ -22,8 +22,14 @@ const DIRECTIONS = {
 	"ui_right": Vector2(1, 0),
 	"ui_left": Vector2(-1, 0),
 	"ui_down": Vector2(0, 1), 
-	"ui_up": Vector2(0, -1)
+	"ui_up": Vector2(0, -1),
+	"right": Vector2(1, 0),
+	"left": Vector2(-1, 0),
+	"down": Vector2(0, 1), 
+	"up": Vector2(0, -1),
 }
+
+signal tool_used(position: Vector2, tool: String)
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
@@ -66,6 +72,9 @@ func handle_tool_usage():
 		using_tool = true
 		$AnimatedSprite2D.flip_h = (current_direction == "left")
 		$AnimatedSprite2D.play(get_animation(current_direction) + "_" + current_tool)
+		if current_tool == "hoe":
+			var tool_position = global_position + DIRECTIONS["ui_" + current_direction] * Global.get_tile_size()
+			emit_signal("tool_used", tool_position, current_tool)
 
 func stop_moving():
 	if !using_tool:

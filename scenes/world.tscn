@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://d37xlch05c6el"]
+[gd_scene load_steps=20 format=3 uid="uid://d37xlch05c6el"]
 
 [ext_resource type="Texture2D" uid="uid://phg70356lv3" path="res://assets/Tilesets/Grass.png" id="1_5gv68"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_odlss"]
 [ext_resource type="Texture2D" uid="uid://dy1qk1nu5k884" path="res://assets/Tilesets/Hills.png" id="2_gs3bd"]
 [ext_resource type="Texture2D" uid="uid://dsgbf3sttoqkn" path="res://assets/Tilesets/Tilled_Dirt.png" id="3_ihab0"]
 [ext_resource type="Texture2D" uid="uid://d0et7ugh1h5k5" path="res://assets/Tilesets/Water.png" id="4_r2nxj"]
@@ -8,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ennt2yytqbwy" path="res://scenes/player.tscn" id="5_eqwfj"]
 [ext_resource type="Texture2D" uid="uid://dy1gj313lr25n" path="res://assets/Objects/Basic_Plants.png" id="6_hkmij"]
 [ext_resource type="Texture2D" uid="uid://cw0u61qkbl8q4" path="res://assets/Objects/Paths.png" id="7_s26cr"]
+[ext_resource type="Texture2D" uid="uid://btn6jnx6pvho7" path="res://crop_land.png" id="9_g28ww"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4h6ov"]
 texture = ExtResource("1_5gv68")
@@ -863,6 +865,12 @@ texture = ExtResource("7_s26cr")
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_15mwi"]
+texture = ExtResource("9_g28ww")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSet" id="TileSet_j1ph3"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_4h6ov")
@@ -872,9 +880,11 @@ sources/3 = SubResource("TileSetAtlasSource_u7ykp")
 sources/5 = SubResource("TileSetAtlasSource_hkqxb")
 sources/6 = SubResource("TileSetAtlasSource_ns0eg")
 sources/7 = SubResource("TileSetAtlasSource_efy7v")
+sources/9 = SubResource("TileSetAtlasSource_15mwi")
 
 [node name="world" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_odlss")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -892,6 +902,8 @@ layer_4/name = "objects"
 layer_4/y_sort_enabled = true
 layer_4/z_index = 1
 layer_4/tile_data = PackedInt32Array(589828, 196613, 0, 327690, 5, 0, 131076, 5, 0, 196630, 5, 3, 196629, 5, 3, 196628, 65541, 3, 327695, 65541, 0, 589838, 65541, 0, 524297, 5, 0, 720907, 5, 0, 393217, 5, 0, 9, 5, 0, 17, 65541, 0, 720903, 196613, 0, 786440, 196613, 2, 786435, 327685, 2, 524295, 327685, 2, 393239, 327685, 2, 786437, 327685, 0, 786441, 458757, 0, 196613, 393221, 0, 19, 393221, 0, 25, 131077, 4, 16, 262149, 2, 1, 262149, 2, 393242, 196613, 2, 458766, 196613, 2, 720909, 327685, 3, 786444, 327685, 3, 589832, 327685, 3, 327685, 327685, 3, 131072, 327685, 3, 65546, 327685, 3, 393240, 327685, 3, 720908, 458757, 3, 720906, 458757, 3, 589836, 458757, 3, 655363, 458757, 3, 589826, 458757, 3, 589824, 458757, 3, 655362, 393221, 3, 786434, 393221, 3, 786432, 393221, 3, 655360, 327685, 3, 327687, 393221, 3, 15, 393221, 3, 327705, 393221, 3, 458767, 393221, 3, 393230, 393221, 3, 589843, 524293, 4, 786455, 458757, 4, 65542, 458757, 4, 196622, 327685, 4, 589835, 458757, 2, 655366, 393221, 2, 589825, 393221, 2, 393224, 458757, 1, 131090, 524293, 1, 524301, 524293, 1, 589830, 524293, 1, 524288, 524293, 1, 393223, 524293, 1, 23, 393221, 2, 65562, 458757, 3, 22, 196613, 2, 65561, 262149, 2, 21, 458757, 1, 524319, 524293, 2, 589856, 524293, 2, 655391, 524293, 2, 524321, 524293, 2, 655393, 524293, 268435458, 589858, 458757, 2, 589854, 458757, 2, 720928, 393221, 3, 524322, 393221, 3, 458784, 393221, 3, 524317, 393221, 3, 589865, 393221, 0, 458789, 327685, 0, 720936, 327685, 0, 589864, 458757, 0, 458792, 524293, 0, 655398, 65541, 0, 524327, 196613, 0, 589860, 65541, 0, 786470, 262149, 2, 655387, 262149, 2, 393247, 262149, 2, 720932, 327685, 2, 786465, 327685, 2)
+layer_5/name = "crops"
+layer_5/tile_data = PackedInt32Array()
 
 [node name="player" parent="." instance=ExtResource("5_eqwfj")]
 z_index = 1
@@ -917,3 +929,5 @@ polygon = PackedVector2Array(593, 0, 593, 59, 596, 63, 667, 64, 671, 59, 671, -1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(688, 219)
+
+[connection signal="tool_used" from="player" to="." method="_on_player_tool_used"]
