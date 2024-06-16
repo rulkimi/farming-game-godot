@@ -962,7 +962,7 @@ layer_5/tile_data = PackedInt32Array(1245198, 65546, 1, 1245199, 65546, 1, 12452
 
 [node name="player" parent="." instance=ExtResource("5_eqwfj")]
 z_index = 1
-position = Vector2(194, 328)
+position = Vector2(206, 254)
 
 [node name="ToolCollision" type="Area2D" parent="player"]
 position = Vector2(14, 0)

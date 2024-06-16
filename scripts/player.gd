@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var tool_collision : Area2D = $ToolCollision
+
 const SPEED = 100
 const BOOSTED_SPEED = SPEED + 100
 
@@ -29,6 +31,13 @@ const DIRECTIONS = {
 	"up": Vector2(0, -1),
 }
 
+const TOOL_OFFSETS = {
+	"down": Vector2(0, 14),
+	"up": Vector2(0, -14),
+	"left": Vector2(-14, 0),
+	"right": Vector2(14, 0)
+}
+
 signal tool_used(position: Vector2, tool: String)
 
 func _ready():
@@ -51,8 +60,10 @@ func handle_movement_input():
 	if !using_tool:
 		for action in DIRECTIONS.keys():
 			if Input.is_action_pressed(action):
+				var direction = action.replace("ui_", "")
+				tool_collision.position = TOOL_OFFSETS[direction]
 				is_moving = true
-				current_direction = action.replace("ui_", "")
+				current_direction = direction
 				$AnimatedSprite2D.flip_h = (action == "ui_left")
 				velocity = DIRECTIONS[action] * speed
 				$AnimatedSprite2D.play(get_animation(current_direction) + "_walk")
