@@ -72,7 +72,7 @@ func handle_tool_usage():
 		using_tool = true
 		$AnimatedSprite2D.flip_h = (current_direction == "left")
 		$AnimatedSprite2D.play(get_animation(current_direction) + "_" + current_tool)
-		if current_tool == "hoe":
+		if current_tool:
 			var tool_position = global_position + DIRECTIONS["ui_" + current_direction] * Global.get_tile_size()
 			emit_signal("tool_used", tool_position, current_tool)
 
