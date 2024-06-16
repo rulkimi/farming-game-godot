@@ -7,8 +7,8 @@ extends Node2D
 func _ready():
 	print(tile_map)
 
-func _on_player_tool_used(position: Vector2, tool: String):
-	var tile_map_pos: Vector2i = tile_map.local_to_map(position)
+func _on_player_tool_used(tool_position: Vector2, tool: String):
+	var tile_map_pos: Vector2i = tile_map.local_to_map(tool_position)
 	
 	if Global.entered_tool_area:
 		if tool == "hoe" and tile_map.get_cell_atlas_coords(5, tile_map_pos) != Vector2i(0, 0):

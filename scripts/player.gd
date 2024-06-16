@@ -43,7 +43,7 @@ signal tool_used(position: Vector2, tool: String)
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	handle_speed_input()
 	handle_movement_input()
 	handle_tool_input()
